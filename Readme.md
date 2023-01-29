@@ -17,3 +17,20 @@ To run tests, do:
 
 ... then, if you would like to see a coverage report run:
 `coverage html` and point your browser into the `htmlcov/` directory.
+
+# URLs
+The quote URL tree is served from a standard ModelViewSet on which `get` and `list` are configured. Check out the `rest.http` file for examples on these. The serializer produces something like this:
+
+```
+{
+  "customer_name": "Irwin Fletcher",
+  "description": "Quote 1",
+  "state": "CA",
+  "coverage_type": "basic",
+  "cost": {
+    "subtotal": 40.8,
+    "taxes": 0.4,
+    "total": 41.2
+  }
+}
+```
