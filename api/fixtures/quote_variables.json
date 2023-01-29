@@ -1,0 +1,62 @@
+[
+    {
+        "model": "api.quotevariable",
+        "pk": 1,
+        "fields": {
+            "quote": 1,
+            "spec": "flood_addition_indicator",
+            "notes": "",
+            "value": null
+        }
+    },
+    {
+        "model": "api.quotevariable",
+        "pk": 2,
+        "fields": {
+            "quote": 1,
+            "spec": "pet_ownership_indicator",
+            "notes": "Owner has two pugs.",
+            "value": null
+        }
+    },
+    {
+        "model": "api.quotevariable",
+        "pk": 3,
+        "fields": {
+            "quote": 2,
+            "spec": "flood_addition_indicator",
+            "notes": "",
+            "value": null
+        }
+    },
+    {
+        "model": "api.quotevariable",
+        "pk": 4,
+        "fields": {
+            "quote": 2,
+            "spec": "pet_ownership_indicator",
+            "notes": "Has a cat",
+            "value": null
+        }
+    },
+    {
+        "model": "api.quotevariable",
+        "pk": 5,
+        "fields": {
+            "quote": 3,
+            "spec": "pet_ownership_indicator",
+            "notes": "This guy gots chickens.",
+            "value": null
+        }
+    },
+    {
+        "model": "api.quotevariable",
+        "pk": 6,
+        "fields": {
+            "quote": 4,
+            "spec": "flood_addition_indicator",
+            "notes": "This house is in a flood plane.",
+            "value": null
+        }
+    }
+]

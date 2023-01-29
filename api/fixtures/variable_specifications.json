@@ -1,0 +1,22 @@
+[
+    {
+        "model": "api.variablespecification",
+        "pk": "flood_addition_indicator",
+        "fields": {
+            "type": "indicator",
+            "description": "This indicates to the rater function to modify the total up by a percentage. This percentage is taken from the state policy.",
+            "default_value": 0.0,
+            "priority": 100
+        }
+    },
+    {
+        "model": "api.variablespecification",
+        "pk": "pet_ownership_indicator",
+        "fields": {
+            "type": "indicator",
+            "description": "Coverage addition for pet ownership. This value is assigned by a global policy .",
+            "default_value": null,
+            "priority": 10
+        }
+    }
+]

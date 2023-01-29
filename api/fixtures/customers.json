@@ -1,0 +1,30 @@
+[
+    {
+        "model": "api.customer",
+        "pk": 1,
+        "fields": {
+            "name": "Rick Deckard"
+        }
+    },
+    {
+        "model": "api.customer",
+        "pk": 2,
+        "fields": {
+            "name": "Irwin Fletcher"
+        }
+    },
+    {
+        "model": "api.customer",
+        "pk": 3,
+        "fields": {
+            "name": "Kevin Flynn"
+        }
+    },
+    {
+        "model": "api.customer",
+        "pk": 4,
+        "fields": {
+            "name": "Jane DeMorgan"
+        }
+    }
+]

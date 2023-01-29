@@ -1,0 +1,7 @@
+# Get all quotes
+GET http://localhost:8000/api/v1/quotes/1 HTTP/1.1 
+content-type: application/json
+
+# Get a quote
+GET http://localhost:8000/api/v1/quotes/1 HTTP/1.1 
+content-type: application/json
