@@ -101,4 +101,5 @@ class SerializerTests(TestCase):
                        'subtotal': r.subtotal,
                        'taxes': r.taxes,
                        'total': r.total}}
-       print(d)
+
+       self.assertDictEqual(expected, d)
