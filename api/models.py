@@ -5,8 +5,9 @@ from typing import Union, List
 from functools import reduce
 from math import floor
 from decimal import Decimal, ROUND_DOWN, ROUND_FLOOR
-from collections import defaultdict
 from collections.abc import Mapping
+import logging
+
 BASIC_POLICY_BASE_KEY="basic_policy_base"
 PREMIUM_POLICY_BASE_KEY="premium_policy_base"
 STATE_TAX_RATE_KEY='state_tax_rate'
@@ -183,7 +184,7 @@ class PolicyRater:
             var_value = var.value
 
         if var_value == None:
-            print("WARN: unknown variable type {}".format(type))
+            logging.warn("unknown variable type {}".format(type))
             return base_value
 
         return self.calculate_value(base_value, var.spec.application, var_value)
@@ -195,6 +196,8 @@ class PolicyRater:
             return var_value
         elif application == VARIABLE_APPLICATION_MULTIPLIER:
             return base_value * normalized_percent(var_value)
+        logging.WARN("Can't handle application {} so returning base value", application)
+        return base_value
 
 
 int_or_float = Union[int, float]
