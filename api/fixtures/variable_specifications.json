@@ -3,20 +3,24 @@
         "model": "api.variablespecification",
         "pk": "flood_addition_indicator",
         "fields": {
-            "type": "indicator",
+            "type": "state_lookup",
+            "application": "multiplier",
             "description": "This indicates to the rater function to modify the total up by a percentage. This percentage is taken from the state policy.",
             "default_value": 0.0,
-            "priority": 100
+            "priority": 100,
+            "lookup_key": "flood_coverage_multiplier"
         }
     },
     {
         "model": "api.variablespecification",
         "pk": "pet_ownership_indicator",
         "fields": {
-            "type": "indicator",
+            "type": "global_lookup",
+            "application": "additive",
             "description": "Coverage addition for pet ownership. This value is assigned by a global policy .",
             "default_value": null,
-            "priority": 10
+            "priority": 10,
+            "lookup_key": "pet_premium_addition"
         }
     }
 ]

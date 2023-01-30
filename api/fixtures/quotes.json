@@ -5,10 +5,10 @@
         "fields": {
             "customer": 2,
             "description": "Quote 1",
-            "rate_model": "CA",
+            "state": "CA",
             "coverage_type": "basic",
             "created_at": "2023-01-29T01:37:03.110Z",
-            "updated_at": "2023-01-29T01:37:03.110Z"
+            "updated_at": "2023-01-29T23:08:51.283Z"
         }
     },
     {
@@ -17,10 +17,10 @@
         "fields": {
             "customer": 3,
             "description": "Quote 2",
-            "rate_model": "CA",
+            "state": "CA",
             "coverage_type": "premium",
             "created_at": "2023-01-29T01:37:27.012Z",
-            "updated_at": "2023-01-29T01:37:27.012Z"
+            "updated_at": "2023-01-29T23:08:57.698Z"
         }
     },
     {
@@ -29,10 +29,10 @@
         "fields": {
             "customer": 3,
             "description": "Quote 3",
-            "rate_model": "NY",
+            "state": "NY",
             "coverage_type": "premium",
             "created_at": "2023-01-29T01:38:35.694Z",
-            "updated_at": "2023-01-29T01:38:35.694Z"
+            "updated_at": "2023-01-29T23:09:05.829Z"
         }
     },
     {
@@ -41,10 +41,10 @@
         "fields": {
             "customer": 4,
             "description": "Quote 4",
-            "rate_model": "TX",
+            "state": "TX",
             "coverage_type": "basic",
             "created_at": "2023-01-29T01:40:22.893Z",
-            "updated_at": "2023-01-29T01:40:22.893Z"
+            "updated_at": "2023-01-29T23:09:11.114Z"
         }
     }
 ]

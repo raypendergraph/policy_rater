@@ -1,10 +1,11 @@
 from django.test import TestCase
-from .models import Quote, Customer, StateRates, GlobalPolicyVariables, RatingResult, trunc, normalized_percent
+from .models import Quote, Customer, RatingResult, PolicyVariable, trunc, normalized_percent, GLOBAL_SCOPE, STATE_TAX_RATE_KEY, PREMIUM_POLICY_BASE_KEY, BASIC_POLICY_BASE_KEY
 from .serializers import QuoteSerializer
 # Create your tests here.
 
 
 class ModelTests(TestCase):
+    fixtures = ["policy_variables.json" ]
     def test_trunc(self):
         self.assertEqual(trunc(43.12345), 43.12)
         self.assertNotEqual(trunc(43.12999945), 43.13)
@@ -13,42 +14,38 @@ class ModelTests(TestCase):
         self.assertEqual(normalized_percent(9.75), .0975)
 
     def test_quote_basics(self):
-        gpv = GlobalPolicyVariables.objects.create(basic_policy_base=15.0,
-                                                   premium_policy_base=30.0,
-                                                   pet_premium=13.0)
+
         c = Customer.objects.create(name="Leroy Jenkins")
-        sr = StateRates.objects.create(state='MO',
-                                       flood_multiplier_percent=13.0,
-                                       monthly_tax_percent=8.0)
         quote_description = "This is a great quote"
         q = Quote.objects.create(customer=c,
                                  description=quote_description,
-                                 rate_model=sr,
+                                 state='TX',
                                  coverage_type='basic')
         self.assertTrue(isinstance(q, Quote))
         self.assertTrue(str(q).startswith(quote_description))
-        self.assertEqual(q.state, sr.state)
         self.assertEqual(q.customer_name, c.name)
         # This also tests if the rater bombs with no variables
         # attached to the quote.
         rate: RatingResult = q.rate
-        self.assertEqual(rate.subtotal, gpv.basic_policy_base)
+        policy_base_var = PolicyVariable.objects.get(scope=GLOBAL_SCOPE, key=BASIC_POLICY_BASE_KEY)
+        state_tax_var = PolicyVariable.objects.get(scope='TX', key=STATE_TAX_RATE_KEY)
+        self.assertEqual(rate.subtotal, policy_base_var.value)
         self.assertAlmostEqual(
-            rate.taxes, sr.monthly_tax_percent*gpv.basic_policy_base / 100.0)
-
+            rate.taxes, state_tax_var.value*policy_base_var.value / 100.0)
+        
         q.coverage_type = 'premium'
         rate = q.rate
-        self.assertEqual(rate.subtotal, gpv.premium_policy_base)
+        policy_base_var = PolicyVariable.objects.get(scope=GLOBAL_SCOPE, key=PREMIUM_POLICY_BASE_KEY)
+        self.assertEqual(rate.subtotal, policy_base_var.value)
         self.assertAlmostEqual(
-            rate.taxes, sr.monthly_tax_percent*gpv.premium_policy_base / 100.0)
+            rate.taxes, state_tax_var.value*policy_base_var.value / 100.0)
 
 
 class CannedScenarioTests(TestCase):
     fixtures = ["customers.json",
-                "global_policy_variables.json",
+                "policy_variables.json",
                 "quote_variables.json",
                 "quotes.json",
-                "state_rates.json",
                 "variable_specifications.json"]
 
     def test_quote_one(self):
@@ -82,10 +79,9 @@ class CannedScenarioTests(TestCase):
 
 class SerializerTests(TestCase):
     fixtures = ["customers.json",
-                "global_policy_variables.json",
+                "policy_variables",
                 "quote_variables.json",
                 "quotes.json",
-                "state_rates.json",
                 "variable_specifications.json"]
 
     def test_serializer_basic(self):

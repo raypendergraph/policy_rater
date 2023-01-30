@@ -1,0 +1,83 @@
+[
+    {
+        "model": "api.policyvariable",
+        "pk": 1,
+        "fields": {
+            "key": "state_tax_rate",
+            "scope": "NY",
+            "value": 2.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 2,
+        "fields": {
+            "key": "state_tax_rate",
+            "scope": "TX",
+            "value": 0.5
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 3,
+        "fields": {
+            "key": "state_tax_rate",
+            "scope": "CA",
+            "value": 1.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 4,
+        "fields": {
+            "key": "flood_coverage_multiplier",
+            "scope": "CA",
+            "value": 2.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 5,
+        "fields": {
+            "key": "flood_coverage_multiplier",
+            "scope": "TX",
+            "value": 50.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 6,
+        "fields": {
+            "key": "flood_coverage_multiplier",
+            "scope": "NY",
+            "value": 10.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 7,
+        "fields": {
+            "key": "basic_policy_base",
+            "scope": "global",
+            "value": 20.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 8,
+        "fields": {
+            "key": "premium_policy_base",
+            "scope": "global",
+            "value": 40.0
+        }
+    },
+    {
+        "model": "api.policyvariable",
+        "pk": 9,
+        "fields": {
+            "key": "pet_premium_addition",
+            "scope": "global",
+            "value": 20.0
+        }
+    }
+]
