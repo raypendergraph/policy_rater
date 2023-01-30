@@ -8,12 +8,12 @@ from decimal import Decimal, ROUND_DOWN, ROUND_FLOOR
 from collections.abc import Mapping
 import logging
 
-BASIC_POLICY_BASE_KEY="basic_policy_base"
-PREMIUM_POLICY_BASE_KEY="premium_policy_base"
-STATE_TAX_RATE_KEY='state_tax_rate'
+BASIC_POLICY_BASE_KEY = "basic_policy_base"
+PREMIUM_POLICY_BASE_KEY = "premium_policy_base"
+STATE_TAX_RATE_KEY = 'state_tax_rate'
 RatingResult = namedtuple("RatingResult", "subtotal taxes total")
-COVERAGE_TYPE_BASIC="basic"
-COVERAGE_TYPE_PREMIUM="premium"
+COVERAGE_TYPE_BASIC = "basic"
+COVERAGE_TYPE_PREMIUM = "premium"
 COVERAGE_TYPE_CHOICES = (
     (COVERAGE_TYPE_BASIC, "Basic"),
     (COVERAGE_TYPE_PREMIUM, "Premium")
@@ -159,10 +159,11 @@ class PolicyRater:
                      self.quote.variables.all(),
                      base_cost)
         # we call out tax separately here because we have to report it as a separate line item. It
-        # should be possible to mark variables as taxes and lower their priority so that we could 
+        # should be possible to mark variables as taxes and lower their priority so that we could
         # remove this and automatically accumulate all applicable taxes. Then taxes would be calculated
         # with the rest of the variables.
-        state_tax_var = PolicyVariable.objects.get(scope=self.quote.state, key=STATE_TAX_RATE_KEY)
+        state_tax_var = PolicyVariable.objects.get(
+            scope=self.quote.state, key=STATE_TAX_RATE_KEY)
         tax = sub * normalized_percent(state_tax_var.value)
         sub = round(sub, 2)
         return RatingResult(subtotal=(sub),
@@ -196,19 +197,17 @@ class PolicyRater:
             return var_value
         elif application == VARIABLE_APPLICATION_MULTIPLIER:
             return base_value * normalized_percent(var_value)
-        logging.WARN("Can't handle application {} so returning base value", application)
+        logging.WARN(
+            "Can't handle application {} so returning base value", application)
         return base_value
 
 
-int_or_float = Union[int, float]
+IntOrFloat = Union[int, float]
 
 
-def normalized_percent(n: int_or_float) -> float:
+def normalized_percent(n: IntOrFloat) -> float:
     return float(n) / 100.0
 
 
-TWO_PLACES = Decimal(".01")
-
-
-def trunc(n: int_or_float) -> float:
+def trunc(n: IntOrFloat) -> float:
     return floor(n * 100) / 100
