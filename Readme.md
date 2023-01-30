@@ -10,7 +10,7 @@ All variables applied into the quote are stored in as a `PolicyVariable`. These 
 1. `python manage.py loaddata api/fixtures/*.json`
 1. `python manage.py runserver`
 
-If you wan to log into the admin panel ([here](http://localhost:8000/admin) there is a test user with the credentials `user:password` 
+If you wan to log into the admin panel to poke around ([here](http://localhost:8000/admin) there is a test user with the credentials `user:password` 
 
 # Testing 
 To run tests, do:

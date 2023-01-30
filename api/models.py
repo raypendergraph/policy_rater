@@ -136,6 +136,7 @@ class Quote(models.Model):
 
     @property
     def rate(self) -> RatingResult:
+        #needs to be memoized probably
         pr = PolicyRater(self)
         return pr.calculate_quote_rate()
 
